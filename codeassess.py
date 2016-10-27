@@ -9,3 +9,28 @@ print(total)
 print(token, github)
 print(total.text)
 total.json()
+
+
+#step 2: Reverse string
+
+def Anagram(str1, str2):
+    my_list = list(str2)
+    num = 0
+    if str1 == '' or "":
+        return False
+    while num <len(str1) and True:
+        x = 0
+        found = False
+        while x < len(my_list) and not found:
+            if str1(num) == my_list(x):
+                found = True
+            else:
+                x+=1
+        if found:
+            my_list[x] = None
+        else:
+            return False
+
+        num +=1
+    return True
+print(Anagram('anna', 'racecar')
