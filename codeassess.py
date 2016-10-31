@@ -16,20 +16,15 @@ print(registration())
 
 url1 = 'http://challenge.code2040.org/api/reverse'
 url2 = 'http://challenge.code2040.org/api/reverse/validate'
-token = "1b0d064d7f3fbe9bc9ab1a6ed56dc8a8"
 
 #step 2: Reverse string
 def reverse_str():
-    x={'token': token, 'github': github}
+    x={'token': token}
     total = requests.post(url1, json=x)
-    print (total.content)
-    text = total.content
-    string = text[::-1]
-    return string
-    total2 = requests.post(url2, json=x)
-    print(x)
-    print(total2.text)
+    print(total.text)
+    rev_str = total.text[::-1]
+    print(rev_str)
+    x={'token': token, 'string': rev_str}
+    total = requests.post(url2, json=x)
+    print(total.text)
 print(reverse_str())
-
-
-
