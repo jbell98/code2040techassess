@@ -14,10 +14,11 @@ def registration():
     print(total.text)
 print(registration())
 
+#step 2: Reverse string
 url1 = 'http://challenge.code2040.org/api/reverse'
 url2 = 'http://challenge.code2040.org/api/reverse/validate'
 
-#step 2: Reverse string
+
 def reverse_str():
     x={'token': token}
     total = requests.post(url1, json=x)
@@ -28,3 +29,47 @@ def reverse_str():
     total = requests.post(url2, json=x)
     print(total.text)
 print(reverse_str())
+
+#step 3: needle in haystack
+url1 = 'http://challenge.code2040.org/api/haystack'
+url2 = 'http://challenge.code2040.org/api/haystack/validate'
+
+
+def needleInHaystack():
+    x={'token': token}
+    total = requests.post(url1, json=x)
+    array = json.loads(total.text)
+    needle = array['needle']
+    h = array['haystack']
+    count = 0
+    for x in h:
+        if x == needle:
+            break
+        else:
+            count +=1
+    i={'token': token, 'needle': count}
+    total = requests.post(url2, json=i)
+    print(total.text)
+print(needleInHaystack())
+
+#step 4: prefix
+url1 = 'http://challenge.code2040.org/api/prefix'
+url2 = 'http://challenge.code2040.org/api/prefix/validate'
+
+def prefix():
+    x={'token': token}
+    total = requests.post(url1, json=x)
+    dic = json.loads(total.text)
+    prfx = dic['prefix']
+    array = dic['array']
+    empty = []
+    for x in array:
+        if not (x.startswith(prfx,0)):
+            empty.append(x)
+            
+    i={'token': token, 'array': empty}
+    total = requests.post(url2, json=i)
+    print(total.text)
+print(prefix())
+
+#step 5: Dating Game
