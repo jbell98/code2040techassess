@@ -21,13 +21,15 @@ token = "1b0d064d7f3fbe9bc9ab1a6ed56dc8a8"
 #step 2: Reverse string
 def reverse_str():
     x={'token': token, 'github': github}
-    total = requests.post(url1, url2, json=x)
+    total = requests.post(url1, json=x)
     print (total.content)
     text = total.content
     string = text[::-1]
-    print(string)
+    return string
     total2 = requests.post(url2, json=x)
+    print(x)
     print(total2.text)
 print(reverse_str())
+
 
 
