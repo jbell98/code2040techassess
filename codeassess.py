@@ -20,5 +20,6 @@ def reverse_str(token):
     token = "1b0d064d7f3fbe9bc9ab1a6ed56dc8a8"
     x["string"] = total.text[::-1]
     total = requests.post(url1, url2, json=x)
+    print(token, url1, url2)
     print(total.text)
-return reverse_str()
+return reverse_str(token)
