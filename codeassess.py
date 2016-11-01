@@ -1,5 +1,7 @@
 import json
 import requests
+import datetime
+from datetime import timedelta
 url = "http://challenge.code2040.org/api/register"
 github = "https://github.com/jbell98/code2040techassess"
 token = "1b0d064d7f3fbe9bc9ab1a6ed56dc8a8"
@@ -10,7 +12,6 @@ def registration():
     x={'token': token, 'github': github}
     total = requests.post(url, json=x)
     print(total)
-    print(token, github)
     print(total.text)
 print(registration())
 
@@ -38,9 +39,9 @@ url2 = 'http://challenge.code2040.org/api/haystack/validate'
 def needleInHaystack():
     x={'token': token}
     total = requests.post(url1, json=x)
-    array = json.loads(total.text)
-    needle = array['needle']
-    h = array['haystack']
+    dic = json.loads(total.text)
+    needle = dic['needle']
+    h = dic['haystack']
     count = 0
     for x in h:
         if x == needle:
@@ -73,3 +74,21 @@ def prefix():
 print(prefix())
 
 #step 5: Dating Game
+url1 = 'http://challenge.code2040.org/api/dating'
+url2 = 'http://challenge.code2040.org/api/dating/validate'
+
+def dateTime():
+    x={'token': token}
+    total = requests.post(url1, json=x)
+    dic = json.loads(total.text)
+    datestamp = dic['datestamp']
+    interval = dic['interval']
+    time = datetime.datetime.strptime(datestamp,"%Y-%m-%dT%H:%M:%SZ")
+    otherTime = datetime.timedelta(seconds = interval)
+    time += otherTime
+    time = time.strftime('%Y-%m-%dT%H:%M:%SZ')
+    i={'token': token, 'datestamp': time}
+    total = requests.post(url2, json=i)
+    print(total.text)
+print(dateTime())
+  
